@@ -1,0 +1,52 @@
+{% extends '_layouts/cp' %}
+{% import '_includes/forms' as forms %}
+
+{% set title = 'Edit Redirect'|t('redirector') %}
+{% set fullPageForm = true %}
+
+{% set crumbs = [
+    {
+        label: "Redirector"|t('redirector'),
+        url: url('redirector')
+    },
+    {
+        label: "Edit Redirect"|t('redirector'),
+        url: url('redirector')
+    }
+] %}
+
+{% block content %}
+    {{ actionInput('redirector/dashboard/save') }}
+    {{ redirectInput('actions/redirector/dashboard/index') }}
+
+    <input type="number" class="hidden" name="redirectId" value="{{ redirect.id }}">
+
+    {{ forms.textField({
+        label: 'From URL'|t('redirector'),
+        instructions: 'The URL/Route you would like to have redirected'|t('redirector'),
+        id: 'fromUrl',
+        name: 'fromUrl',
+        value: redirect.fromUrl,
+        required: true,
+        errors: redirect.getErrors('fromUrl')
+    }) }}
+
+    {{ forms.textField({
+        label: 'To URL'|t('redirector'),
+        instructions: 'The URL/Route you would like to redirect to'|t('redirector'),
+        id: 'toUrl',
+        name: 'toUrl',
+        value: redirect.toUrl,
+        required: true,
+        errors: redirect.getErrors('toUrl')
+    }) }}
+
+    {{ forms.selectField({
+        label: 'Type'|t('redirector'),
+        instructions: 'The type of redirect you would like to perform'|t('redirector'),
+        id: 'type',
+        name: 'type',
+        value: redirect.type,
+        options: types
+    }) }}
+{% endblock %}

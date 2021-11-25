@@ -1,0 +1,49 @@
+{
+    "name": "jaetooledev/redirector",
+    "description": "A simple way to add 301/302 redirects within CraftCMS",
+    "type": "craft-plugin",
+    "version": "1.0.0",
+    "keywords": [
+        "craft",
+        "cms",
+        "craftcms",
+        "craft-plugin",
+        "redirector"
+    ],
+    "support": {
+        "docs": "https://github.com/jaetooledev/redirector/blob/master/README.md",
+        "issues": "https://github.com/jaetooledev/redirector/issues"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jae Toole",
+            "homepage": "https://github.com/jaetooledev"
+        }
+    ],
+    "require": {
+        "craftcms/cms": "^3.0.0"
+    },
+    "require-dev": {
+      "craftcms/cms": "^3.2.0",
+      "codeception/codeception": "^3.0",
+      "vlucas/phpdotenv": "^3.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "jaetooledev\\redirector\\": "src/"
+        }
+    },
+    "extra": {
+        "name": "Redirector",
+        "handle": "redirector",
+        "developer": "Jae Toole",
+        "developerUrl": "https://github.com/jaetooledev",
+        "documentationUrl": "https://github.com/jaetooledev/redirector/blob/master/README.md",
+        "changelogUrl": "https://raw.githubusercontent.com/jaetooledev/redirector/master/CHANGELOG.md",
+        "components": {
+            "redirectService": "RedirectService"
+        },
+        "class": "jaetooledev\\redirector\\Redirector"
+    }
+}

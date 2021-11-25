@@ -1,0 +1,67 @@
+{# @var craft \craft\web\twig\variables\CraftVariable #}
+
+{% extends "_layouts/cp" %}
+{% import "_includes/forms" as forms %}
+
+{% set docsUrl = "https://github.com/jaetooledev/redirector/blob/master/README.md" %}
+
+{% set title = "Redirector" %}
+
+{% set pluginCpUrl = url('redirector') %}
+
+{% block actionButton %}
+    <a href="{{ url('redirector/redirect/new') }}" class="submit btn add icon">{{ "New Redirect"|t('redirector') }}</a>
+{% endblock %}
+
+{% set crumbs = [
+    {
+        label: "Redirector"|t('redirector'),
+        url: pluginCpUrl
+    }
+] %}
+
+{# The content of the CP Section#}
+{% set content %}
+{#    <h2>{{ "Index CP Section body goes here"|t('redirector') }}</h2>#}
+{#    <img src="{{ iconUrl }}" height="64" width="64" />#}
+{#    <p class="textline"></p>#}
+    {%  if redirects|length %}
+        <div class="elements">
+        <div class="tableview tablepane">
+        <table class="data fullwidth collapsable">
+            <thead>
+                <th class="orderable" scope="col" data-attribute="fromUrl">{{ "From URL"|t('redirector') }}</th>
+                <th scope="col">{{ "To URL"|t('redirector') }}</th>
+                <th scope="col">{{ "Type"|t('redirector') }}</th>
+                <th></th>
+            </thead>
+            <tbody>
+                {% for redirect in redirects %}
+                    <tr data-id="{{ redirect.id }}" data-name="{{ redirect.fromUrl }}">
+                        <td data-title="{{ "From URL"|t("redirector") }}">
+                            {{ redirect.fromUrl }}
+                        </td>
+                        <td data-title="{{ "To URL"|t("redirector") }}">
+                            {{ redirect.toUrl }}
+                        </td>
+                        <td data-title="{{ "Type"|t("redirector") }}">
+                            {{ redirect.type }}
+                        </td>
+                        <td data-title="{{ "Utilities"|t("utilities") }}">
+                            <a href="{{ url("redirector/redirect/" ~ redirect.id) }}" class="submit btn edit icon">Edit Redirect</a>
+                            <a href="{{ url("redirector/redirect/" ~ redirect.id ~ "/delete") }}" class="delete btn delete icon">Delete Redirect</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        </div>
+        </div>
+        {% else %}
+        <div>
+            <p>{{ "You have no redirects"|t("redirector") }}</p>
+        </div>
+    {% endif %}
+{% endset %}
+
+
